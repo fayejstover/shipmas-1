@@ -33,7 +33,8 @@ const captions = [
 ];
 
 const captionsSecond = [
-  "i meant it"
+  "i mean it", 
+  "happy holidays goon", 
 ];
 
 
@@ -356,13 +357,13 @@ function showReel() {
   const t1 = setTimeout(() => {
     elements.reelCaption.textContent = randomFrom(captions);
     elements.reelCaption.classList.add('visible');
-  }, 1500);
+  }, 3000);
   state.captionTimeouts.push(t1);
 
   const t2 = setTimeout(() => {
     elements.reelCaption.textContent = randomFrom(captionsSecond);
     elements.exitBtn.classList.add('visible');
-  }, 3000);
+  }, 4500);
   state.captionTimeouts.push(t2);
 }
 
