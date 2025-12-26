@@ -1,0 +1,556 @@
+/* ==========================================
+   thought of you — styles
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-warm: #f7f3ed;
+  --bg-soft: #ebe5db;
+  --text-muted: #5a5248;
+  --text-soft: #8a8279;
+  --accent-warm: #c4a882;
+  --shadow-soft: rgba(90, 82, 72, 0.1);
+}
+
+html, body {
+  overflow: hidden;
+  background: var(--bg-warm);
+  font-family: 'Spectral', serif;
+  color: var(--text-muted);
+  cursor: default;
+}
+
+/* ==========================================
+   Scroll Container
+   ========================================== */
+
+#scroll-container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+#scroll-content {
+  position: relative;
+  height: 600vh;
+  width: 100%;
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-warm);
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.1s ease;
+  opacity: 0.6;
+}
+
+/* ==========================================
+   Phase 1: Stairs
+   ========================================== */
+
+#stairs-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#stairs-section img {
+  position: absolute;
+  /* Based on 1146x741 frame: (33, 290) */
+  top: 39.1%;      /* 290/741 */
+  left: 2.9%;      /* 33/1146 */
+  transform: none;
+  width: 101.6vw;  /* 1164.91/1146 */
+  height: auto;
+  opacity: 0.9;
+}
+
+.stairs-placeholder {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 70%;
+  height: 80%;
+  background: linear-gradient(135deg, var(--bg-soft) 0%, var(--accent-warm) 100%);
+  opacity: 0.3;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+/* ==========================================
+   Cats
+   ========================================== */
+
+.cat {
+  position: fixed;
+  z-index: 20;
+  transition: opacity 0.8s ease, top 0.3s ease, left 0.3s ease;
+}
+
+.cat img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cat-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--accent-warm);
+  border-radius: 50% 50% 45% 45%;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Floor phase positions (based on 963x579 frame) */
+#cat1 {
+  width: calc(131px * var(--scene-scale, 1));
+  height: calc(285px * var(--scene-scale, 1));
+  top: 15%;
+  left: 20%;
+}
+
+#cat2 {
+  width: calc(116px * var(--scene-scale, 1));
+  height: calc(215px * var(--scene-scale, 1));
+  top: 18%;
+  left: 25%;
+}
+
+/* Floor phase final positions */
+#cat1.floor-position {
+  left: 0%;
+  top: calc(48.7% * var(--scene-scale, 1));
+}
+
+#cat2.floor-position {
+  left: 11%;
+  top: calc(60.8% * var(--scene-scale, 1));
+}
+
+/* ==========================================
+   Phase 2: Floor
+   ========================================== */
+
+#floor-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 300vw;
+  height: 30vh;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.floor-line {
+  display: none;
+}
+
+/* ==========================================
+   Presents
+   ========================================== */
+
+#presents-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+#presents-container.active {
+  pointer-events: auto;
+}
+
+.present {
+  position: absolute;
+  cursor: grab;
+  transition: transform 0.2s ease, opacity 0.6s ease;
+  pointer-events: auto;
+}
+
+.present img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.present:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.present:active {
+  cursor: grabbing;
+}
+
+.present-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  padding: 4px;
+}
+
+/* Present positions based on 963x579 frame, converted to percentages */
+/* Using vw/vh for responsiveness */
+
+#present1 {
+  width: 12.06vw;  /* 116.227/963 */
+  height: 15.3vh;  /* 88.615/579 */
+  left: 24.6%;     /* 237/963 */
+  top: 81.5%;      /* 472/579 */
+}
+
+#present2 {
+  width: 14.47vw;  /* 139.294/963 */
+  height: 25.24vh; /* 146.148/579 */
+  left: 27.6%;     /* 266/963 */
+  top: 70.8%;      /* 410/579 */
+}
+
+#present3 {
+  width: 14.22vw;  /* 136.939/963 */
+  height: 14.52vh; /* 84.1/579 */
+  left: 34.9%;     /* 336/963 */
+  top: 81.7%;      /* 473/579 */
+}
+
+#present4 {
+  width: 10.81vw;  /* 104.05/963 */
+  height: 19.56vh; /* 113.23/579 */
+  left: 40.7%;     /* 392/963 */
+  top: 75.5%;      /* 437/579 */
+}
+
+#present5 {
+  width: 12.06vw;  /* 116.227/963 */
+  height: 15.3vh;  /* 88.615/579 */
+  left: 50.3%;     /* 484/963 */
+  top: 81.9%;      /* 474/579 */
+}
+
+#present6 {
+  width: 14.22vw;  /* 136.939/963 */
+  height: 14.52vh; /* 84.1/579 */
+  left: 57.6%;     /* 555/963 */
+  top: 82.6%;      /* 478/579 */
+}
+
+#present7 {
+  width: 14.22vw;  /* 136.948/963 */
+  height: 19.56vh; /* 113.23/579 */
+  left: 61.1%;     /* 588/963 */
+  top: 76.7%;      /* 444/579 */
+}
+
+#present8 {
+  width: 13.26vw;  /* 127.716/963 */
+  height: 25.24vh; /* 146.148/579 */
+  left: 68.6%;     /* 661/963 */
+  top: 71.2%;      /* 412/579 */
+}
+
+/* Present placeholder colors */
+#present1 .present-placeholder,
+#present3 .present-placeholder,
+#present5 .present-placeholder { background: #a8c4a0; } /* green */
+
+#present2 .present-placeholder,
+#present4 .present-placeholder,
+#present6 .present-placeholder,
+#present8 .present-placeholder { background: #c49ec4; } /* purple/pink */
+
+#present7 .present-placeholder { background: #a8c4a0; } /* green */
+
+/* ==========================================
+   Tree
+   ========================================== */
+
+#tree {
+  position: fixed;
+  /* Based on 963x579 frame: (715, 27) */
+  width: 26.36vw;   /* 253.88/963 */
+  height: 92.63vh;  /* 536.362/579 */
+  left: 74.2%;      /* 715/963 */
+  top: 4.66%;       /* 27/579 */
+  z-index: 12;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#tree img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tree-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #7a9970 0%, #5a7a50 60%, #8b6b4a 90%);
+  clip-path: polygon(50% 0%, 15% 75%, 40% 75%, 40% 100%, 60% 100%, 60% 75%, 85% 75%);
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: white;
+  font-style: italic;
+}
+
+/* ==========================================
+   Unwrap Zone
+   ========================================== */
+
+#unwrap-zone {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border: 2px dashed var(--accent-warm);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease, border-color 0.3s ease;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#unwrap-zone.visible {
+  opacity: 0.6;
+}
+
+#unwrap-zone.active {
+  border-color: var(--text-muted);
+  opacity: 1;
+  background: rgba(196, 168, 130, 0.1);
+}
+
+.zone-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-soft);
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Placed Present (in unwrap zone)
+   ========================================== */
+
+#placed-present {
+  position: fixed;
+  z-index: 30;
+  display: none;
+}
+
+#placed-present img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.present-unwrapping {
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+/* ==========================================
+   Sparks
+   ========================================== */
+
+.spark {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 35;
+  animation: sparkFade 0.6s ease-out forwards;
+}
+
+.spark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.spark-placeholder {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+@keyframes sparkFade {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* ==========================================
+   Reel / Video Overlay
+   ========================================== */
+
+#reel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(247, 243, 237, 0.97);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#reel-overlay.visible {
+  opacity: 1;
+}
+
+#reel-gif {
+  width: auto;
+  height: 70vh;
+  aspect-ratio: 9 / 16;
+  max-width: 90vw;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px var(--shadow-soft);
+  object-fit: cover;
+}
+
+#reel-caption {
+  margin-top: 2.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+#reel-caption.visible {
+  opacity: 1;
+}
+
+#exit-btn {
+  margin-top: 3rem;
+  font-family: 'Spectral', serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.6s ease, color 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+#exit-btn.visible {
+  opacity: 0.6;
+}
+
+#exit-btn:hover {
+  opacity: 1;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   Instructions
+   ========================================== */
+
+#instructions {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-soft);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 50;
+  text-align: center;
+}
+
+#instructions.visible {
+  opacity: 0.7;
+}
+
+/* ==========================================
+   Debug / Dev
+   ========================================== */
+
+#phase-indicator {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 0.7rem;
+  color: var(--text-soft);
+  opacity: 0.4;
+  z-index: 1000;
+  font-family: monospace;
+}
+
+/* Hide in production */
+.production #phase-indicator {
+  display: none;
+}

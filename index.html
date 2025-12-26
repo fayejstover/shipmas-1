@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>thought of you</title>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Spectral:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <div id="phase-indicator">phase: stairs</div>
+  <div id="instructions">scroll gently</div>
+  <div id="scroll-container">
+    <div id="scroll-content"></div>
+  </div>
+
+  <!-- Phase 1: Stairs -->
+  <div id="stairs-section">
+    <img src="assets/images/stairs.png" alt="stairs"> 
+  </div>
+
+  <!-- Cats -->
+  <div class="cat" id="cat1">
+    <img src="assets/images/cat1.png" alt="cat"> 
+  </div>
+  <div class="cat" id="cat2">
+    <img src="assets/images/cat2.png" alt="cat"> 
+  </div>
+
+  <!-- Phase 2: Floor -->
+  <div id="floor-section">
+    <div class="floor-line"></div>
+  </div>
+
+  <div id="tree">
+    <img src="assets/images/tree.png" alt="tree"> 
+  </div>
+  
+  <!-- Presents (order in DOM affects z-index layering) -->
+  <div id="presents-container">
+    <div class="present" id="present2" data-index="1">
+      <img src="assets/images/present2.png" alt="gift"> 
+    </div>
+    <div class="present" id="present1" data-index="0">
+      <img src="assets/images/present1.png" alt="gift"> 
+    </div>
+    <div class="present" id="present3" data-index="2">
+      <img src="assets/images/present3.png" alt="gift"> 
+    </div>
+    <div class="present" id="present4" data-index="3">
+      <img src="assets/images/present4.png" alt="gift"> 
+    </div>
+    <div class="present" id="present5" data-index="4">
+      <img src="assets/images/present5.png" alt="gift"> 
+    </div>
+    <div class="present" id="present7" data-index="6">
+      <img src="assets/images/present7.png" alt="gift"> 
+    </div>
+    <div class="present" id="present6" data-index="5">
+      <img src="assets/images/present6.png" alt="gift"> 
+    </div>
+    <div class="present" id="present8" data-index="7">
+      <img src="assets/images/present8.png" alt="gift"> 
+    </div>
+  </div>
+
+  <!-- Unwrap  -->
+  <div id="unwrap-zone">
+    <span class="zone-hint">place here</span>
+  </div>
+
+  <!-- clone for unwrapping -->
+  <div id="placed-present"></div>
+
+  <!-- Spark template (hidden, used for cloning) -->
+  <div class="spark-template" style="display: none;">
+    <img src="assets/images/spark.png" alt=""> 
+  </div>
+
+  
+  <div id="reel-overlay">
+    <img id="reel-gif" src="" alt="reel">
+    <p id="reel-caption"></p>
+    <button id="exit-btn">leave</button>
+  </div>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>
